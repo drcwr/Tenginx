@@ -1,11 +1,11 @@
-宿住机器新建好日志目录和网站目录（镜像内有一个/data/htdocs目录可以使用），启动时挂载，
-如果php是sock方式还要挂载一个sock（镜像内有一个/data/php目录可以使用），
-nginx默认配置文件目录：/etc/nginx/和/etc/nginx/conf.d，
-日志目录：/var/log/nginx
-开放端口：80,443
+#宿住机器新建好日志目录和网站目录（镜像内有一个/data/htdocs目录可以使用），启动时挂载，
+#如果php是sock方式还要挂载一个sock（镜像内有一个/data/php目录可以使用），
+#nginx默认配置文件目录：/etc/nginx/和/etc/nginx/conf.d，
+#日志目录：/var/log/nginx
+#开放端口：80,443
 
-nginx -V:
-
+##nginx -V:
+```
 Tengine version: Tengine/2.2.2 (nginx/1.8.1)
 built by gcc 6.4.0 (Alpine 6.4.0) 
 TLS SNI support enabled
@@ -144,10 +144,10 @@ nginx:     ngx_mail_imap_module (static)
 nginx:     ngx_mail_smtp_module (static)
 nginx:     ngx_mail_auth_http_module (static)
 nginx:     ngx_mail_proxy_module (static)
+```
 
-
-提供一个默认的nginx.conf,可通过-v挂在容器的/etc/nginx/nginx.conf上：
-
+##提供一个默认的nginx.conf,可通过-v挂在容器的/etc/nginx/nginx.conf上：
+```
 
 worker_processes 2;
 worker_cpu_affinity auto;
@@ -197,11 +197,11 @@ http {
     limit_req_zone $binary_remote_addr $request_uri zone=thre:3m rate=1r/s;
     include conf.d/*.conf;
 }
+```
 
-
-再提供一个conf.d/localhost.conf，可通过-v挂到容器的/etc/nginx/conf.d目录后，放置到宿主机对应的目录即可：
-该配置文件已经配置了php文件的请求，向php-cgi.sock请求php文件，所以要提前将php的sock文件指定到该容器内
-
+##再提供一个conf.d/localhost.conf，可通过-v挂到容器的/etc/nginx/conf.d目录后，放置到宿主机对应的目录即可：
+##该配置文件已经配置了php文件的请求，向php-cgi.sock请求php文件，所以要提前将php的sock文件指定到该容器内
+```
 server {
     listen 80;
     server_name  localhost;
@@ -256,3 +256,4 @@ server {
         deny all;
     }
 }
+```
