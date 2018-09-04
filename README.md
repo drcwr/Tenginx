@@ -1,6 +1,10 @@
+```
+docker run -dit -p 80:80 -p 443:443 --net host -v /data/htdocs:/data/htdocs -v /data/nginx/logs:/var/log/nginx -v /data/nginx/conf/nginx.conf:/etc/nginx/nginx.conf -v /data/nginx/conf/include:/etc/nginx/conf.d registry.cn-hangzhou.aliyuncs.com/server_repertory/nginx:latest
+```
 ### 宿住机器新建好日志目录和网站目录（镜像内有一个/data/htdocs目录可以使用），启动时挂载，
 ### 如果php是sock方式还要挂载一个sock（镜像内有一个/data/php目录可以使用），
 ### nginx默认配置文件目录：/etc/nginx/和/etc/nginx/conf.d，
+### nginx默认配置文件：/etc/nginx/nginx.conf和/etc/nginx/conf.d/www.conf，
 ### 日志目录：/var/log/nginx
 ### 开放端口：80,443
 
@@ -200,7 +204,7 @@ http {
 ```
 
 ### 再提供一个conf.d/localhost.conf，可通过-v挂到容器的/etc/nginx/conf.d目录后，放置到宿主机对应的目录即可：
-### 该配置文件已经配置了php文件的请求，向php-cgi.sock请求php文件，所以要提前将php的sock文件指定到该容器内
+### 该配置文件已经配置了php文件的请求，向php-cgi.sock请求php文件，所以要提前将php的sock文件指定到该容器内（建议通过IP:PORT方式）
 ```
 server {
     listen 80;
