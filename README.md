@@ -1,6 +1,11 @@
 ```
+docker pull registry.cn-hangzhou.aliyuncs.com/server_repertory/nginx:latest
+```
+### 启动命令
+```
 docker run -dit -p 80:80 -p 443:443 --net host -v /data/htdocs:/data/htdocs -v /data/nginx/logs:/var/log/nginx -v /data/nginx/conf/nginx.conf:/etc/nginx/nginx.conf -v /data/nginx/conf/include:/etc/nginx/conf.d registry.cn-hangzhou.aliyuncs.com/server_repertory/nginx:latest
 ```
+
 ### 宿住机器新建好日志目录和网站目录（镜像内有一个/data/htdocs目录可以使用），启动时挂载，
 ### 如果php是sock方式还要挂载一个sock（镜像内有一个/data/php目录可以使用），
 ### nginx默认配置文件目录：/etc/nginx/和/etc/nginx/conf.d，
