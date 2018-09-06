@@ -19,10 +19,6 @@ RUN mkdir -p /var/log/nginx /var/run/nginx/ /var/tmp/nginx/uwsgi /var/tmp/nginx/
 
 ENV TIMEZONE Asia/Shanghai
 
-
-# apk --update --repository=http://dl-4.alpinelinux.org/alpine/edge/testing add nginx nginx-mod-devel-kit nginx-mod-http-lua nginx-mod-http-lua-upstream  nginx-mod-http-geoip nginx-mod-http-perl nginx-mod-stream-geoip nginx-mod-http-upload-progress nginx-mod-rtmp nginx-mod-http-nchan nginx-mod-http-cache-purge nginx-mod-http-redis2 nginx-mod-http-headers-more nginx-mod-stream nginx-mod-http-xslt-filter  nginx-mod-http-upstream-fair nginx-mod-http-vod
-
-
 ENV TENGINE_VERSION 2.2.2
 
 ENV CONFIG "\
@@ -111,8 +107,8 @@ RUN apk update && \
             | sort -u \
     )" \
     && apk add --virtual .nginx-rundeps $runDeps \
-    && apk del .build-deps && apk del make && apk del wget && apk del curl && rm -rf /var/cache/apk/* \
-    && rm -rf /usr/src/nginx-$NGINX_VERSION \
+    && apk del .build-deps && apk del make wget curl gcc libc-dev openssl-dev pcre-dev zlib-dev linux-headers geoip-dev libxml2-dev libxslt-dev gd-dev lua-dev jemalloc-dev && rm -rf /var/cache/apk/* \
+    && rm -rf /usr/src/tengine-$TENGINE_VERSION  \
     && apk add --no-cache gettext \
     \
     # forward request and error logs to docker log collector
