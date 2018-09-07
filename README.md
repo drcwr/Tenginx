@@ -3,7 +3,7 @@ docker pull w303972870/tenginx
 ```
 ### 启动命令
 ```
-docker run -dit -p 80:80 -p 443:443 --net host -v /data/htdocs:/data/htdocs -v /data/nginx/logs:/var/log/nginx -v /data/nginx/conf/nginx.conf:/etc/nginx/nginx.conf -v /data/nginx/conf/include:/etc/nginx/conf.d registry.cn-hangzhou.aliyuncs.com/server_repertory/nginx:latest
+docker run -dit -p 80:80 -p 443:443 --net host -v /data/htdocs:/data/htdocs -v /data/nginx/logs:/var/log/nginx -v /data/nginx/conf/nginx.conf:/etc/nginx/nginx.conf -v /data/nginx/conf/include:/etc/nginx/conf.d docker.io/w303972870/tenginx
 ```
 
 ### 宿住机器新建好日志目录和网站目录（镜像内有一个/data/htdocs目录可以使用），启动时挂载，
