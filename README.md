@@ -1,5 +1,5 @@
 ```
-docker pull registry.cn-hangzhou.aliyuncs.com/server_repertory/nginx:latest
+docker pull w303972870/tenginx
 ```
 ### 启动命令
 ```
